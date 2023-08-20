@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "604709023133",
+    "project_id": "videosharingapp-11933",
+    "storage_bucket": "videosharingapp-11933.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604709023133:android:7460a250d0cfbf45295374",
+        "android_client_info": {
+          "package_name": "com.example.videosharingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604709023133-a5fh13nf3dpmf88kc5k79vmqpabaehnd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.videosharingapp",
+            "certificate_hash": "4ce62ae1acd1f064d70edd993369a5d288a731b8"
+          }
+        },
+        {
+          "client_id": "604709023133-kokm55rv5rfuhivlj7qg6mc6jqlnaesu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHwx41NGC_trU_scH765x9MWTUO8ypyaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604709023133-kokm55rv5rfuhivlj7qg6mc6jqlnaesu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
