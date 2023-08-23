@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appLogo" />
 
     <Button
-        android:id="@+id/watchYtVideo"
+        android:id="@+id/btnWatchYtVideo"
         android:background="@drawable/button_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/mainTitle" />
 
     <Button
-        android:id="@+id/listYtChannelVideo"
+        android:id="@+id/btnListYtChannelVideo"
         android:background="@drawable/button_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,6 +53,6 @@
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/watchYtVideo" />
+        app:layout_constraintTop_toBottomOf="@+id/btnWatchYtVideo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
