@@ -10,10 +10,10 @@ import java.util.List;
 
 @Dao
 public interface YouTubeDatabaseAccessObject {
-    @Query("SELECT * FROM Channels")
-    LiveData<List<ChannelInfo>> getChannelsInfo();
+    @Query("SELECT * FROM Videos")
+    LiveData<List<VideoInfo>> getVideoInfo();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insertChannelInfo(ChannelInfo channelInfo);
+    long insertVideoInfo(VideoInfo videoInfo);
 
 }

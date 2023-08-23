@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 @Database(
-        entities = {ChannelInfo.class},
+        entities = {VideoInfo.class},
         version = 1,
         exportSchema = false
 )

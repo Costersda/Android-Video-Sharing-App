@@ -84,14 +84,14 @@ public class YouTubePlayerActivity extends AppCompatActivity {
         });
 
 
-//        Button youTubeApiBtn = findViewById(R.id.ytHttpRequestBtn);
-//        youTubeApiBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), YouTubeApiRequestActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        Button youTubeApiBtn = findViewById(R.id.ytHttpRequestBtn);
+        youTubeApiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), YouTubeVideoListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public String extractVideoIdFromUrl(String url){

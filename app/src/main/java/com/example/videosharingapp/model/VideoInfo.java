@@ -1,0 +1,61 @@
+package com.example.videosharingapp.model;
+
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
+
+@Entity(tableName = "Videos")
+public class VideoInfo implements Serializable {
+
+    @Ignore
+    public static final String VIDEO_ID_KEY = "VIDEO_ID";
+    @Ignore
+    public static final String VIDEO_TITLE = "VIDEO_TITLE";
+    @Ignore
+    public static final String VIDEO_DESCRIPTION = "VIDEO_DESCRIPTION";
+
+    @PrimaryKey
+    @NonNull
+    private String videoID;
+    private String videoTitle;
+    private String videoDescription;
+
+    //Constructors
+    public VideoInfo(){}
+
+    public VideoInfo(@NonNull String videoID, String videoTitle, String videoDescription) {
+        this.videoID = videoID;
+        this.videoTitle = videoTitle;
+        this.videoDescription = videoDescription;
+    }
+
+    //Setters
+    public void setVideoID(@NonNull String videoID) {
+        this.videoID = videoID;
+    }
+
+    public void setVideoTitle(String videoTitle) {
+        this.videoTitle = videoTitle;
+    }
+
+    public void setVideoDescription(String videoDescription) {
+        this.videoDescription = videoDescription;
+    }
+
+    //Getters
+    @NonNull
+    public String getVideoID() {
+        return videoID;
+    }
+
+    public String getVideoTitle() {
+        return videoTitle;
+    }
+
+    public String getVideoDescription() {
+        return videoDescription;
+    }
+}
