@@ -21,15 +21,17 @@ public class VideoInfo implements Serializable {
     @NonNull
     private String videoID;
     private String videoTitle;
-    private String videoDescription;
+    private String videoViewCount;
+    private String videoUrl;
 
     //Constructors
     public VideoInfo(){}
 
-    public VideoInfo(@NonNull String videoID, String videoTitle, String videoDescription) {
+    public VideoInfo(@NonNull String videoID, String videoTitle, String videoViewCount, String videoUrl) {
         this.videoID = videoID;
         this.videoTitle = videoTitle;
-        this.videoDescription = videoDescription;
+        this.videoViewCount = videoViewCount;
+        this.videoUrl = videoUrl;
     }
 
     //Setters
@@ -41,8 +43,12 @@ public class VideoInfo implements Serializable {
         this.videoTitle = videoTitle;
     }
 
-    public void setVideoDescription(String videoDescription) {
-        this.videoDescription = videoDescription;
+    public void setVideoViewCount(String videoViewCount) {
+        this.videoViewCount = videoViewCount;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
     }
 
     //Getters
@@ -55,7 +61,11 @@ public class VideoInfo implements Serializable {
         return videoTitle;
     }
 
-    public String getVideoDescription() {
-        return videoDescription;
+    public String getVideoViewCount() {
+        return videoViewCount;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
     }
 }
