@@ -20,6 +20,10 @@ android {
     namespace 'com.example.videosharingapp'
     compileSdk 33
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId "com.example.videosharingapp"
         minSdk 24
