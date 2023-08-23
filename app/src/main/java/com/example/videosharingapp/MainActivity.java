@@ -32,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnListYtChannel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), YouTubeVideoListActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 //        signOutBtn.setOnClickListener(new View.OnClickListener() {

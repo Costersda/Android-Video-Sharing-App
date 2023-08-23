@@ -16,7 +16,7 @@ public class SingleVideoRetrofit {
                 .build();
     }
 
-    public synchronized SingleVideoRetrofit getmInstance() {
+    public static synchronized SingleVideoRetrofit getmInstance() {
         if (mInstance == null) {
             mInstance = new SingleVideoRetrofit();
         }

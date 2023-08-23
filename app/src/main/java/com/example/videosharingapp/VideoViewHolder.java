@@ -2,6 +2,7 @@ package com.example.videosharingapp;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import com.example.videosharingapp.model.VideoInfo;
 public class VideoViewHolder extends RecyclerView.ViewHolder {
 
     CardView cardView;
+    ImageView thumbnailIv;
     TextView videoTitleTv, videoViewCountTv;
     VideoInfo videoInfo;
 
@@ -21,7 +23,7 @@ public class VideoViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         cardView = itemView.findViewById(R.id.videoCard);
         videoTitleTv = itemView.findViewById(R.id.videoTitleTv);
-        videoViewCountTv = itemView.findViewById(R.id.videoViewsTv);
+        thumbnailIv = itemView.findViewById(R.id.thumbnailIv);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override

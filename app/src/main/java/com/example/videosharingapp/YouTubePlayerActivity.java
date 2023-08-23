@@ -54,7 +54,7 @@ public class YouTubePlayerActivity extends AppCompatActivity {
         TextView nameTv = findViewById(R.id.userNameTV);
         ImageView avatarView = findViewById(R.id.avatarImage);
         nameTv.setText(currentUser.getDisplayName());
-        Picasso.with(this).load(currentUser.getPhotoUrl().toString()).into(avatarView);
+        Picasso.get().load(currentUser.getPhotoUrl().toString()).into(avatarView);
 
         // initialising the GUI widget for the Video Player and user's input for the video to play
         youTubePlayerView = findViewById(R.id.youtube_player_view);

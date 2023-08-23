@@ -20,11 +20,3 @@ public interface API {
 }
 
 
-//https://www.googleapis.com/youtube/v3
-//        /search?
-//        key=AIzaSyCj1zEgV7W-dXFAy6ZxLxquWbM9Xkz0K44
-//        &channelId=UCEWpbFLzoYGPfuWUMFPSaoA
-//        &part=snippet
-//        &order=date
-//        &maxResults=50
-//        &type=video
