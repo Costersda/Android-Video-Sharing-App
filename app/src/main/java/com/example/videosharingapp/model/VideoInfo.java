@@ -15,7 +15,9 @@ public class VideoInfo implements Serializable {
     @Ignore
     public static final String VIDEO_TITLE = "VIDEO_TITLE";
     @Ignore
-    public static final String VIDEO_DESCRIPTION = "VIDEO_DESCRIPTION";
+    public static final String VIDEO_VIEW_COUNT = "VIDEO_VIEW_COUNT";
+    @Ignore
+    public static final String VIDEO_URL = "VIDEO_URL";
 
     @PrimaryKey
     @NonNull
