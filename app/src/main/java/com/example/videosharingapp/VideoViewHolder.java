@@ -20,12 +20,6 @@ public class VideoViewHolder extends RecyclerView.ViewHolder {
     TextView videoTitleTv;
     VideoInfo videoInfo;
 
-    Context context;
-    Items[] items;
-
-
-
-
     public VideoViewHolder(@NonNull View itemView) {
         super(itemView);
         cardView = itemView.findViewById(R.id.videoCard);
@@ -42,4 +36,4 @@ public class VideoViewHolder extends RecyclerView.ViewHolder {
 //        });
     }
 }
-//ToDo send the URL? or add the URL to the VideoInfo class
+
