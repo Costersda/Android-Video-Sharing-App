@@ -16,4 +16,7 @@ public interface YouTubeDatabaseAccessObject {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertVideoInfo(VideoInfo videoInfo);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<VideoInfo> videoInfoList);
+
 }
