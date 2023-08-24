@@ -37,10 +37,17 @@ public class YouTubePlayerActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
 
+    Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_player);
+
+        // Check if an intent has been passed to this activity
+        if (getIntent() != null && getIntent().hasExtra("url")) {
+            videoId = getIntent().getStringExtra("url");
+        }
 
 
         auth = FirebaseAuth.getInstance();
@@ -49,7 +56,7 @@ public class YouTubePlayerActivity extends AppCompatActivity {
         // Check if the user is already signed in
         FirebaseUser currentUser = auth.getCurrentUser();
 
-        credential = getIntent().getParcelableExtra("CREDENTIAL");
+        //credential = getIntent().getParcelableExtra("CREDENTIAL");
 
         TextView nameTv = findViewById(R.id.userNameTV);
         ImageView avatarView = findViewById(R.id.avatarImage);
@@ -78,7 +85,9 @@ public class YouTubePlayerActivity extends AppCompatActivity {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer){
                 super.onReady(youTubePlayer);
-                videoId = "KAbJnGLDxnE";
+                if (videoId == null || videoId.isEmpty()){
+                    videoId = "KAbJnGLDxnE";
+                }
                 youTubePlayer.loadVideo(videoId, 0);
             }
         });
@@ -90,6 +99,7 @@ public class YouTubePlayerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), YouTubeVideoListActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

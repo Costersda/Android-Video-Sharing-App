@@ -44,7 +44,7 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
 
     private void makeApiCall() {
         Call<VideoModel> videoModelCall = SingleVideoRetrofit.getmInstance().getAPI().getVideosDetails(
-                "AIzaSyCj1zEgV7W-dXFAy6ZxLxquWbM9Xkz0K44",
+                BuildConfig.YOUTUBE_API_KEY,
                 "UCEWpbFLzoYGPfuWUMFPSaoA",
                 "snippet",
                 "date",
@@ -71,17 +71,5 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
     }
 
-    private static String readYouTubeApiKey() {
-        Properties properties = new Properties();
-        try {
-            FileInputStream inputStream = new FileInputStream("local.properties");
-            properties.load(inputStream);
-            return properties.getProperty("YOUTUBE_API_KEY");
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
 }
-//Todo get the api key working
+

@@ -11,63 +11,52 @@ import java.io.Serializable;
 public class VideoInfo implements Serializable {
 
     @Ignore
-    public static final String VIDEO_ID_KEY = "VIDEO_ID";
-    @Ignore
     public static final String VIDEO_TITLE = "VIDEO_TITLE";
     @Ignore
-    public static final String VIDEO_VIEW_COUNT = "VIDEO_VIEW_COUNT";
+    public static final String VIDEO_THUMBNAIL_URL = "VIDEO_THUMBNAIL_URL";
     @Ignore
     public static final String VIDEO_URL = "VIDEO_URL";
 
     @PrimaryKey
     @NonNull
-    private String videoID;
-    private String videoTitle;
-    private String videoViewCount;
     private String videoUrl;
+    private String videoTitle;
+    private String videoThumbnailUrl;
+
 
     //Constructors
     public VideoInfo(){}
 
-    public VideoInfo(@NonNull String videoID, String videoTitle, String videoViewCount, String videoUrl) {
-        this.videoID = videoID;
-        this.videoTitle = videoTitle;
-        this.videoViewCount = videoViewCount;
+    public VideoInfo(@NonNull String videoUrl, String videoTitle, String videoThumbnailUrl) {
         this.videoUrl = videoUrl;
+        this.videoTitle = videoTitle;
+        this.videoThumbnailUrl = videoThumbnailUrl;
     }
 
     //Setters
-    public void setVideoID(@NonNull String videoID) {
-        this.videoID = videoID;
+    public void setVideoUrl(@NonNull String videoUrl) {
+        this.videoUrl = videoUrl;
     }
 
     public void setVideoTitle(String videoTitle) {
         this.videoTitle = videoTitle;
     }
 
-    public void setVideoViewCount(String videoViewCount) {
-        this.videoViewCount = videoViewCount;
-    }
-
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
+    public void setVideoThumbnailUrl(String videoThumbnailUrl) {
+        this.videoThumbnailUrl = videoThumbnailUrl;
     }
 
     //Getters
     @NonNull
-    public String getVideoID() {
-        return videoID;
+    public String getVideoUrl() {
+        return videoUrl;
     }
 
     public String getVideoTitle() {
         return videoTitle;
     }
 
-    public String getVideoViewCount() {
-        return videoViewCount;
-    }
-
-    public String getVideoUrl() {
-        return videoUrl;
+    public String getVideoThumbnailUrl() {
+        return videoThumbnailUrl;
     }
 }

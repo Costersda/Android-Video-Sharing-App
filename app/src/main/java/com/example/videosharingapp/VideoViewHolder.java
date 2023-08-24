@@ -15,8 +15,10 @@ public class VideoViewHolder extends RecyclerView.ViewHolder {
 
     CardView cardView;
     ImageView thumbnailIv;
-    TextView videoTitleTv, videoViewCountTv;
+    TextView videoTitleTv;
     VideoInfo videoInfo;
+
+
 
 
     public VideoViewHolder(@NonNull View itemView) {
@@ -25,14 +27,14 @@ public class VideoViewHolder extends RecyclerView.ViewHolder {
         videoTitleTv = itemView.findViewById(R.id.videoTitleTv);
         thumbnailIv = itemView.findViewById(R.id.thumbnailIv);
 
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(itemView.getContext(), YouTubePlayerActivity.class);
-                intent.putExtra("VIDEO_INFO", videoInfo);
-                itemView.getContext().startActivity(intent);
-            }
-        });
+//        cardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(itemView.getContext(), YouTubePlayerActivity.class);
+//                intent.putExtra("VIDEO_INFO", videoInfo);
+//                itemView.getContext().startActivity(intent);
+//            }
+//        });
     }
 }
 //ToDo send the URL? or add the URL to the VideoInfo class

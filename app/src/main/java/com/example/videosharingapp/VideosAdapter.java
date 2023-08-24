@@ -1,6 +1,7 @@
 package com.example.videosharingapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,14 @@ public class VideosAdapter extends RecyclerView.Adapter<VideoViewHolder> {
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
         holder.videoTitleTv.setText(items[position].getSnippet().getTitle());
         Picasso.get().load(items[position].getSnippet().getThumbnails().getHigh().getUrl()).into(holder.thumbnailIv);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, YouTubePlayerActivity.class);
+                intent.putExtra("url", items[position].getId().getVideoId());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
