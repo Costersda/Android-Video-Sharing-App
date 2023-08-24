@@ -1,5 +1,6 @@
 package com.example.videosharingapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.videosharingapp.model.ApiModels.Items;
 import com.example.videosharingapp.model.VideoInfo;
 
 public class VideoViewHolder extends RecyclerView.ViewHolder {
@@ -17,6 +19,9 @@ public class VideoViewHolder extends RecyclerView.ViewHolder {
     ImageView thumbnailIv;
     TextView videoTitleTv;
     VideoInfo videoInfo;
+
+    Context context;
+    Items[] items;
 
 
 

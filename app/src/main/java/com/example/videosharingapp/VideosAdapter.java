@@ -1,5 +1,6 @@
 package com.example.videosharingapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -42,9 +43,10 @@ public class VideosAdapter extends RecyclerView.Adapter<VideoViewHolder> {
                 Intent intent = new Intent(context, YouTubePlayerActivity.class);
                 intent.putExtra("url", items[position].getId().getVideoId());
                 context.startActivity(intent);
+
+                ((Activity) context).finish();
             }
         });
-
     }
 
     @Override

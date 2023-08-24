@@ -12,20 +12,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#1AC5E3">
 
         <ImageView
             android:id="@+id/thumbnailIv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:layout_gravity="center"/>
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            />
 
         <TextView
             android:id="@+id/videoTitleTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:textColor="@color/black"/>
 
 
     </LinearLayout>
