@@ -2,6 +2,8 @@ package com.example.videosharingapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -27,7 +29,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import retrofit2.Call;
@@ -41,6 +45,14 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
 
     YouTubeDatabase database;
     YouTubeDatabaseAccessObject youTubeDoa;
+
+    YouTubeVideoListActivity apiRequestActivity;
+
+    private LiveData<List<VideoInfo>> videos;
+
+
+
+
 
 
     @Override
@@ -57,7 +69,41 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
         database = Room.databaseBuilder(getApplicationContext(),
                 YouTubeDatabase.class, "Video-database").build();
 
+//        ///////////
+//        youTubeDoa = YouTubeDatabase.getDBInstance(getApplicationContext()).getDatabaseDao();
+//        if(videos == null){
+//            videos = database.getDatabaseDao().getVideoInfo();
+//        }
+//        ///////////
+
+
+
         makeApiCall();
+
+//        FirebaseFirestore firestoreDb = FirebaseFirestore.getInstance();
+//
+//        database.getDatabaseDao().getVideoInfo().observe(this, new Observer<List<VideoInfo>>() {
+//            @Override
+//            public void onChanged(List<VideoInfo> videoInfos) {
+//                for (VideoInfo localVideo : videoInfos) {
+//                    Map<String, Object> videoData = new HashMap<>();
+//                    videoData.put("videoTitle", localVideo.getVideoTitle());
+//                    videoData.put("videoThumbnailUrl", localVideo.getVideoThumbnailUrl());
+//                    videoData.put("videoUrl", localVideo.getVideoUrl());
+//
+//                    firestoreDb.collection("videos").document(localVideo.getVideoUrl())
+//                            .set(videoData)
+//                            .addOnSuccessListener(aVoid -> {
+//                                // Successfully wrote data to Firestore
+//                            })
+//                            .addOnFailureListener(e -> {
+//                                // Handle failure
+//                            });
+//                }
+//            }
+//        });
+
+
     }
 
     private void makeApiCall() {
@@ -99,7 +145,6 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
                             }
                         }).start();
                     }
-
                 }
             }
 
