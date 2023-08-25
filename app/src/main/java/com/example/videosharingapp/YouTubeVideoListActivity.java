@@ -2,6 +2,7 @@ package com.example.videosharingapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -17,11 +18,13 @@ import com.example.videosharingapp.model.ApiModels.VideoModel;
 import com.example.videosharingapp.model.VideoInfo;
 import com.example.videosharingapp.model.YouTubeDatabase;
 import com.example.videosharingapp.model.YouTubeDatabaseAccessObject;
+import com.example.videosharingapp.viewModel.YouTubeVideoListViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 import java.io.FileInputStream;
@@ -40,8 +43,6 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
     ProgressBar progressBar;
 
     YouTubeDatabase database;
-    YouTubeDatabaseAccessObject youTubeDoa;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
         channelsRecyclerView.hasFixedSize();
 
         database = Room.databaseBuilder(getApplicationContext(),
-                YouTubeDatabase.class, "Video-database").build();
+                YouTubeDatabase.class, "YTDatabase").build();
 
         makeApiCall();
     }
@@ -73,11 +74,9 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<VideoModel> call, Response<VideoModel> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Set the RecyclerView
-                    setRecyclerView(response.body().getItems());
-
                     Items[] videoItems = response.body().getItems();
                     List<VideoInfo> videoInfoList = new ArrayList<>();
+
                     // Turn the response into VideoInfo Objects
                     for (Items videoItem : videoItems) {
                         String videoUrl = "https://www.youtube.com/watch?v=" + videoItem.getId().getVideoId();
@@ -86,8 +85,6 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
 
                         VideoInfo videoInfo = new VideoInfo(videoUrl, videoTitle, videoThumbnailUrl);
                         videoInfoList.add(videoInfo);
-
-                        Log.e("video", String.valueOf(videoInfoList.size()));
                     }
 
                     // Save videoInfoList to Room database
@@ -95,11 +92,31 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                database.getDatabaseDao().insertAll(videoInfoList);
+                                YouTubeDatabaseAccessObject dao = database.getDatabaseDao();
+                                for (VideoInfo videoInfo : videoInfoList) {
+                                    dao.insertVideoInfo(videoInfo);
+
+                                    // Check if the document exists in Firestore before adding
+                                    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+                                    firestore.collection("videos")
+                                            .whereEqualTo("videoUrl", videoInfo.getVideoUrl())
+                                            .get()
+                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                    if (queryDocumentSnapshots.isEmpty()) {
+                                                        // Document doesn't exist, add it to Firestore
+                                                        firestore.collection("videos").add(videoInfo);
+                                                    }
+                                                }
+                                            });
+                                }
                             }
                         }).start();
                     }
 
+                    // Set the RecyclerView
+                    setRecyclerView(response.body().getItems());
                 }
             }
 
@@ -116,28 +133,5 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
         channelsRecyclerView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
     }
-
-//    private void writeToFirebase(VideoInfo videoInfo){
-//        // Connecting with the Firebase Realtime Database
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        CollectionReference channelCollection = db.collection("yt_channel_data");
-//        DocumentReference channelRef = channelCollection.document(videoInfo.getVideoUrl());
-//        channelRef.set(videoInfo)
-//                .addOnSuccessListener(
-//                        new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//                                youTubeDoa.insertVideoInfo(videoInfo);
-//                            }
-//                        }
-//                )
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.e("FireStoreError", "cannot add data in FireStore");
-//                    }
-//                });
-//    }
-
 }
 
