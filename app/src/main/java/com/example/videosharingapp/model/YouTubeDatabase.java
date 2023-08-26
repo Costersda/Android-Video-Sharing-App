@@ -7,14 +7,15 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 @Database(
-        entities = {VideoInfo.class},
+        entities = {VideoInfo.class, ChannelInfo.class},
         version = 1,
         exportSchema = false
 )
 
 public abstract class YouTubeDatabase extends RoomDatabase {
     private static YouTubeDatabase database;
-    public abstract YouTubeDatabaseAccessObject getDatabaseDao();
+    public abstract VideoDoa getVideoDatabaseDao();
+    public abstract ChannelDoa getChannelDatabaseDao();
 
     public static synchronized YouTubeDatabase getDBInstance(Context context){
         if (database == null){

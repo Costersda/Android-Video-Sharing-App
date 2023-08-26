@@ -10,11 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.videosharingapp.model.ApiModels.Items;
-import com.example.videosharingapp.model.VideoInfo;
+import com.example.videosharingapp.model.ApiModels.videos.Items;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 public class VideosAdapter extends RecyclerView.Adapter<VideoViewHolder> {
 

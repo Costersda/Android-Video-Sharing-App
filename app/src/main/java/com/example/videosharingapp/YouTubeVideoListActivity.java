@@ -1,37 +1,28 @@
 package com.example.videosharingapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.videosharingapp.model.API.SingleVideoRetrofit;
-import com.example.videosharingapp.model.ApiModels.Items;
-import com.example.videosharingapp.model.ApiModels.VideoModel;
+import com.example.videosharingapp.model.ApiModels.videos.Items;
+import com.example.videosharingapp.model.ApiModels.videos.VideoModel;
+import com.example.videosharingapp.model.VideoDoa;
 import com.example.videosharingapp.model.VideoInfo;
 import com.example.videosharingapp.model.YouTubeDatabase;
-import com.example.videosharingapp.model.YouTubeDatabaseAccessObject;
-import com.example.videosharingapp.viewModel.YouTubeVideoListViewModel;
-import com.google.android.gms.tasks.OnFailureListener;
+
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,10 +49,12 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
         database = Room.databaseBuilder(getApplicationContext(),
                 YouTubeDatabase.class, "YTDatabase").build();
 
-        makeApiCall();
+        makeVideoApiCall();
+        //makeChannelApiCall();
     }
 
-    private void makeApiCall() {
+
+    private void makeVideoApiCall() {
         Call<VideoModel> videoModelCall = SingleVideoRetrofit.getmInstance().getAPI().getVideosDetails(
                 BuildConfig.YOUTUBE_API_KEY,
                 "UCEWpbFLzoYGPfuWUMFPSaoA",
@@ -92,7 +85,7 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                YouTubeDatabaseAccessObject dao = database.getDatabaseDao();
+                                VideoDoa dao = database.getVideoDatabaseDao();
                                 for (VideoInfo videoInfo : videoInfoList) {
                                     dao.insertVideoInfo(videoInfo);
 
@@ -133,5 +126,7 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
         channelsRecyclerView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
     }
+
+
 }
 
