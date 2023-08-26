@@ -1,4 +1,4 @@
-package com.example.videosharingapp.model.ApiModels;
+package com.example.videosharingapp.model.ApiModels.videos;
 
 public class Medium {
 

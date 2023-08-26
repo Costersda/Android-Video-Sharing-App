@@ -1,8 +1,8 @@
-package com.example.videosharingapp.model.ApiModels;
+package com.example.videosharingapp.model.ApiModels.channels;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Default {
+public class ChannelHigh {
 
     @SerializedName("url")
     String url;

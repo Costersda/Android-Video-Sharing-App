@@ -1,8 +1,4 @@
-package com.example.videosharingapp.model.ApiModels;
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
+package com.example.videosharingapp.model.ApiModels.videos;
 
 public class VideoModel {
 

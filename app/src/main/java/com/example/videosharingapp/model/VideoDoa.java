@@ -9,7 +9,7 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-public interface YouTubeDatabaseAccessObject {
+public interface VideoDoa {
     @Query("SELECT * FROM Videos")
     LiveData<List<VideoInfo>> getVideoInfo();
 
@@ -17,6 +17,9 @@ public interface YouTubeDatabaseAccessObject {
     long insertVideoInfo(VideoInfo videoInfo);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<VideoInfo> videoInfoList);
+    void insertAllVideos(List<VideoInfo> videoInfoList);
+
+
+
 
 }
