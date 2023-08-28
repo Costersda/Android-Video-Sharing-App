@@ -86,7 +86,7 @@ public class YouTubePlayerActivity extends AppCompatActivity {
             public void onReady(@NonNull YouTubePlayer youTubePlayer){
                 super.onReady(youTubePlayer);
                 if (videoId == null || videoId.isEmpty()){
-                    videoId = "KAbJnGLDxnE";
+                    videoId = "XoYu7K6Ywkg";
                 }
                 youTubePlayer.loadVideo(videoId, 0);
             }
@@ -130,7 +130,7 @@ public class YouTubePlayerActivity extends AppCompatActivity {
         // check if the user has given video URL or not
         String urlStr = videoUrlEt.getText().toString();
         if (urlStr.isEmpty()){
-            videoId = "KAbJnGLDxnE"; // default Video ID
+            videoId = "XoYu7K6Ywkg"; // default Video ID
         } else {
             videoId = extractVideoIdFromUrl(urlStr);
         }

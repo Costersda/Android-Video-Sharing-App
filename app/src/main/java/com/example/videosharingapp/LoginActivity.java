@@ -112,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                         else {
                             Toast.makeText(LoginActivity.this,"error",Toast.LENGTH_LONG).show();
@@ -123,9 +124,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void startMainActivity() {
+        finish(); // Finish the LoginActivity so the user can't go back to it after login
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
-        finish(); // Finish the LoginActivity so the user can't go back to it after login
+
     }
 
 }
