@@ -131,6 +131,7 @@ public class YouTubePlayerActivity extends AppCompatActivity {
         String urlStr = videoUrlEt.getText().toString();
         if (urlStr.isEmpty()){
             videoId = "XoYu7K6Ywkg"; // default Video ID
+            Toast.makeText(this, "EditText empty! Now playing default video", Toast.LENGTH_LONG).show();
         } else {
             videoId = extractVideoIdFromUrl(urlStr);
         }

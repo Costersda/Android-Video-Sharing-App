@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -95,13 +96,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void firebaseAuth(String idToken) {
+        // Record the start time
+        long startTime = System.currentTimeMillis();
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken,null);
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        // Record the end time when the task completes
+                        long endTime = System.currentTimeMillis();
+
+                        if (task.isSuccessful()) {
                             FirebaseUser user = auth.getCurrentUser();
                             Users users = new Users();
                             users.setUserID(user.getUid());
@@ -110,17 +116,18 @@ public class LoginActivity extends AppCompatActivity {
 
                             database.getReference().child("Users").child(user.getUid()).setValue(users);
 
+                            // Calculate and log the time taken
+                            long timeTaken = endTime - startTime;
+                            Log.d("FirebaseAuthTime", "Time taken: " + timeTaken + " milliseconds");
+
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "error", Toast.LENGTH_LONG).show();
                         }
-                        else {
-                            Toast.makeText(LoginActivity.this,"error",Toast.LENGTH_LONG).show();
-                        }
-
                     }
                 });
-
     }
 
     private void startMainActivity() {
@@ -131,3 +138,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
+
+// This code uses best practices for optimisation in several ways:
+// The code starts by checking if the user is already signed in (FirebaseUser currentUser = auth.getCurrentUser();).
+// This is a good practice to quickly skip the sign-in process if the user is already authenticated.
+// The code correctly handles asynchronous operations, such as sign-in and Firebase authentication,
+// using callbacks like OnCompleteListener. This is essential to avoid blocking the main UI thread.
+
+// Factors that can affect the performance of data access in the cloud:
+// Network Speed: The speed and stability of the user's network connection can significantly impact data access performance.
+// Data Volume: The amount of data retrieved can impact performance. Minimize data transfer by requesting only what's necessary.
+// Local Caching: Effective use of local caching can reduce the need for frequent network requests.
+// Background Tasks: Ensure that background tasks don't consume excessive resources or interfere with the user experience.
+
+// It took 1258 milliseconds between the request being made and the response

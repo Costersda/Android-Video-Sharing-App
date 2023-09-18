@@ -1,8 +1,6 @@
 package com.example.videosharingapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -23,19 +21,13 @@ import com.example.videosharingapp.model.ChannelInfo;
 import com.example.videosharingapp.model.VideoDoa;
 import com.example.videosharingapp.model.VideoInfo;
 import com.example.videosharingapp.model.YouTubeDatabase;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -205,6 +197,7 @@ public class YouTubeVideoListActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }
 
